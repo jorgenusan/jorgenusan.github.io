@@ -1,0 +1,35 @@
+---
+import SocialMediaLinks from "./SocialMediaLinks.astro";
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div
+    class="flex flex-wrap lg:flex-row justify-center items-center pl-4 pr-4 pt-16"
+>
+    <div class="avatar flex flex-col">
+        <div class="w-40 lg:w-80 md:w-60 rounded-xl">
+            <img id="avatar" alt="Me" src="/me.jpg" />
+        </div>
+    </div>
+    <div
+        class="flex flex-col text-center md:pl-10 sm:pl-4 lg:pl-20 md:pt-4 mt-4 lg:mt-0"
+    >
+        <h1
+            id="name"
+            class="lg:text-5xl md:text-4xl text-2xl lg:mb-5 font-bold text-custom-blue"
+        >
+            {t('title.name')}
+        </h1>
+        <h2 id="job" class="lg:text-xl lg:mb-2 titles">
+            {t('title.title')}, {t('title.company')}
+        </h2>
+        <SocialMediaLinks />
+    </div>
+</div>
+
+<script >
+
+  </script>
