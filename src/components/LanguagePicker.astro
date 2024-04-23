@@ -18,7 +18,7 @@ const lang = getLangFromUrl(Astro.url);
   const selectElement = document.getElementById('language-select');
 
   selectElement?.addEventListener('change', (event) => {
-    const selectedLanguage = (event.target as HTMLSelectElement)?.value;
+    const selectedLanguage = (event.target as HTMLSelectElement).value;
     const translatePath = useTranslatedPath(selectedLanguage as "en" | "es");
     window.location.href = translatePath('/', selectedLanguage);
   });
