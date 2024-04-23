@@ -1,16 +1,25 @@
 ---
 import { languages } from '../i18n/ui';
-import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+import { getLangFromUrl } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
 ---
 
-<ul>
-  {Object.entries(languages).map(([lang, label]) => (
-    <li>
-      <a href={translatePath('/', lang)}>{label}</a>
-    </li>
+<select id="language-select" class="select select-bordered w-full max-w-xs">
+  <option disabled>Choose language</option>
+  {Object.entries(languages).map(([langCode, label]) => (
+    <option value={langCode} selected={langCode === lang}>{label}</option>
   ))}
-</ul>
+</select>
+
+<script>
+  import { useTranslatedPath } from '../i18n/utils';
+
+  const selectElement = document.getElementById('language-select');
+
+  selectElement?.addEventListener('change', (event) => {
+    const selectedLanguage = (event.target as HTMLSelectElement)?.value;
+    const translatePath = useTranslatedPath(selectedLanguage as "en" | "es");
+    window.location.href = translatePath('/', selectedLanguage);
+  });
+</script>
