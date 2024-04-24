@@ -1,0 +1,14 @@
+---
+import { getLangFromUrl } from "@src/i18n/utils";
+import { getCollection } from "astro:content";
+
+const about = await getCollection("about");
+const lang = getLangFromUrl(Astro.url);
+let page = about.find(p => p.slug.startsWith(lang));
+
+const { Content }: any = await page?.render();
+---
+
+<div class="w-full mt-1 mb-1 pl-8 pr-8 lg:pl-2 lg:pr-2 md:pl-2 md:pr-2">
+    <div class="prose max-w-none md:prose-lg prose-a:text-blue-600 hover:prose-a:text-blue-500 dark:prose-invert"><Content /></div>
+</div>
