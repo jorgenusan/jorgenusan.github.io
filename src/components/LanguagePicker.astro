@@ -5,7 +5,7 @@ import { getLangFromUrl } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 ---
 
-<select id="language-select" class="select select-bordered max-w-xs w-40">
+<select id="language-select" class="select select-bordered max-w-xs w-32">
   <option disabled>Choose language</option>
   {Object.entries(languages).map(([langCode, label]) => (
     <option value={langCode} selected={langCode === lang}>{label}</option>
