@@ -1,29 +1,13 @@
 ---
 import LanguagePicker from '@src/components/LanguagePicker.astro';
-
+import ToggleTheme from './ToggleTheme.astro';
 ---
 
-<div class="navbar bg-base-100 mb-20">
-    <div class="navbar-start">
-      <div class="dropdown">
-        <div tabindex={0} role="button" class="btn btn-ghost lg:hidden">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-        </div>
-        <ul tabindex={0} class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-          <li><a>Item 1</a></li>
-          <li>
-            <a>Parent</a>
-            <ul class="p-2">
-              <li><a>Submenu 1</a></li>
-              <li><a>Submenu 2</a></li>
-            </ul>
-          </li>
-          <li><a>Item 3</a></li>
-        </ul>
-      </div>
-      <a href="" class="btn btn-ghost text-xl">Jorge Núñez Santiago</a>
+<div class="navbar mb-20 lg:pl-20 lg:pr-20 2xl:pr-80 2xl:pl-80 fixed z-50 bg-opacity-90">
+    <div class="navbar-start flex justify-between">
+      <a href="#" class="btn btn-ghost text-xl">JNS Website</a>
     </div>
-    <div class="navbar-center hidden lg:flex">
+    <div class="navbar-center hidden md:flex">
       <ul class="menu menu-horizontal px-1">
         <li><a>Item 1</a></li>
         <li>
@@ -39,6 +23,40 @@ import LanguagePicker from '@src/components/LanguagePicker.astro';
       </ul>
     </div>
     <div class="navbar-end hidden md:flex">
+      <div class="mr-4">
+        <ToggleTheme />
+      </div>
       <LanguagePicker />
     </div>
+    <div class="navbar-end md:hidden">
+      <div class="dropdown">
+        <div tabindex={0} role="button" class="btn btn-ghost md:hidden" onclick="toggleDropdown()">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+        </div>
+        <ul tabindex={0} class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-lg bg-base-100 rounded-box w-52 right-0 hidden">
+          <li><a>Item 1</a></li>
+          <li><a>Parent</a></li>
+          <li><a>Item 3</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
+
+  <div class="h-36"></div>
+
+<script is:inline>
+  function toggleDropdown() {
+    const dropdown = document.querySelector('.dropdown-content');
+    dropdown.classList.toggle('hidden');
+  }
+
+  window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    const color = "bg-gray-900";
+    if (window.scrollY > 0) {
+      navbar.classList.add(color);
+    } else {
+      navbar.classList.remove(color);
+    }
+  });
+</script>
