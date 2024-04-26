@@ -1,6 +1,11 @@
 {
-    "title.name": "Jorge Núñez Santiago",
-    "title.title": "Machine Learning Engineer",
-    "title.company": "Antexia Technologies S.L.",
-    "title.img": "/me.jpg"
+    "home.name": "Jorge Núñez Santiago",
+    "home.title": "Machine Learning Engineer",
+    "home.company": "Antexia Technologies S.L.",
+    "home.img": "/me.jpg",
+    "navbar.about": "About",
+    "navbar.vitae": "Vitae",
+    "navbar.projects": "Projects",
+    "navbar.title": "JNS",
+    "navbar.options": "Options"
 }

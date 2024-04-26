@@ -1,25 +1,21 @@
 ---
 import LanguagePicker from '@src/components/LanguagePicker.astro';
 import ToggleTheme from './ToggleTheme.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="navbar mb-20 lg:pl-20 lg:pr-20 2xl:pr-80 2xl:pl-80 fixed z-50 bg-opacity-95">
     <div class="navbar-start flex justify-between">
-      <a href="#" class="btn btn-ghost text-xl">JNS Website</a>
+      <a href="#" class="btn btn-ghost text-xl">{t('navbar.title')}</a>
     </div>
     <div class="navbar-center hidden md:flex">
       <ul class="menu menu-horizontal px-1">
-        <li><a>Item 1</a></li>
-        <li>
-          <details>
-            <summary>Parent</summary>
-            <ul class="p-2">
-              <li><a>Submenu 1</a></li>
-              <li><a>Submenu 2</a></li>
-            </ul>
-          </details>
-        </li>
-        <li><a>Item 3</a></li>
+        <li><a href="/">{t('navbar.about')}</a></li>
+        <li><a href="vitae">{t('navbar.vitae')}</a></li>
+        <li><a href="projects">{t('navbar.projects')}</a></li>
       </ul>
     </div>
     <div class="navbar-end hidden md:flex">
@@ -30,13 +26,20 @@ import ToggleTheme from './ToggleTheme.astro';
     </div>
     <div class="navbar-end md:hidden">
       <div class="dropdown">
-        <div tabindex={0} role="button" class="btn btn-ghost md:hidden" onclick="toggleDropdown()">
+        <div tabindex="0" role="button" class="btn btn-ghost md:hidden" onclick="toggleDropdown()">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
         </div>
-        <ul tabindex={0} class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-lg bg-base-100 rounded-box w-52 right-0 hidden">
-          <li><a>Item 1</a></li>
-          <li><a>Parent</a></li>
-          <li><a>Item 3</a></li>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-lg bg-base-100 rounded-box w-52 right-0 hidden">
+          <li><a href="/">{t('navbar.about')}</a></li>
+          <li><a href="vitae">{t('navbar.vitae')}</a></li>
+          <li><a href="projects">{t('navbar.projects')}</a></li>
+          <li>
+            <a>{t('navbar.options')}</a>
+            <ul>
+              <!-- <li><a><ToggleTheme /></a></li> -->
+              <!-- <li><a><LanguagePicker /></a></li> -->
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
@@ -53,9 +56,9 @@ import ToggleTheme from './ToggleTheme.astro';
   function updateNavbarColor() {
     const navbar = document.querySelector('.navbar');
     const theme = localStorage.getItem('theme');
-    let color = theme === 'light' ? "bg-gray-300" : "bg-gray-800";
+    let color = theme === 'light' ? "bg-gray-200" : "bg-gray-600";
 
-    navbar.classList.remove("bg-gray-300", "bg-gray-800");
+    navbar.classList.remove("bg-gray-200", "bg-gray-600");
 
     if (window.scrollY > 0) {
       navbar.classList.add(color);
