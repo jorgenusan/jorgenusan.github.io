@@ -1,0 +1,28 @@
+---
+// @ts-nocheck
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="flex flex-col w-full">
+    <h1 class="text-2xl font-bold mb-4 text-left titles">{t(`${Astro.props.type}.title`)}</h1>
+    <br />
+    <div class="flex flex-wrap justify-center">
+        {Astro.props.items.map((item, index) => (
+            <a id={t(`${Astro.props.type}.${item}.name`)} class="card w-80 lg:ml-10 md:ml-5 shadow-custom-blue shadow-md flex mb-4 bg-custom-black" href={t(`${Astro.props.type}.${item}.link`)} target="_blank" rel="noopener noreferrer">
+                <figure>
+                    <img
+                        src={t(`${Astro.props.type}.${item}.img`)}
+                        alt={t(`${Astro.props.type}.${item}.name`)}
+                    />
+                </figure>
+                <div class="card-body">
+                    <h2 class="card-title text-custom-blue">{t(`${Astro.props.type}.${item}.name`)}</h2>
+                    <p>{t(`${Astro.props.type}.${item}.description`)}</p>
+                </div>
+            </a>
+        ))}
+    </div>
+</div>
