@@ -1,0 +1,67 @@
+---
+// @ts-nocheck
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const type = Astro.props.type;
+---
+
+<div class="flex flex-col w-full">
+    <h1 class="text-2xl font-bold mb-4 text-left titles">{t(`${Astro.props.type}.title`)}</h1>
+    <br />
+    <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+        {Astro.props.items.map((item, index) => (
+            <li>
+                <div class="timeline-middle">
+                    <div class="avatar">
+                        <div class="div-img w-20 rounded-full bg-cover bg-center bg-no-repeat bg-white" style={{ backgroundImage: `url(${t(`${Astro.props.type}.${item}.img`)})`, backgroundSize: '90%' }} />
+                    </div>
+                </div>
+                <div
+                    class={`${index % 2 === 0
+                            ? "timeline-start md:text-end"
+                            : "timeline-end"
+                        } pl-4 pr-4 pb-10`}
+                >
+                    <time class="font-mono italic">
+                        {t(`${Astro.props.type}.${item}.startDate`)} - {t(`${Astro.props.type}.${item}.endDate`)}
+                    </time>
+                    <div class="text-lg font-black text-custom-blue">
+                        {t(`${Astro.props.type}.${item}.title`)}
+                        <span class=" text-gray-400"> - </span>
+                        <a
+                            class="link link-hover text-gray-400"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={t(`${Astro.props.type}.${item}.web`)}
+                        >
+                            {t(`${Astro.props.type}.${item}.name`)}
+                        </a>
+                    </div>
+                    <div class="mt-2" set:html={t(`${Astro.props.type}.${item}.description`)}>
+                    </div>
+                </div>
+                {index !== Astro.props.items.length - 1 && (
+                    <hr />
+                )}
+            </li>
+        ))}
+    </ul>
+</div>
+
+<script>
+    function applyBorderBasedOnTheme() {
+        const theme = localStorage.getItem('theme');
+        const images = document.querySelectorAll('.div-img');
+
+        images.forEach(img => {
+            (img as HTMLImageElement).style.border = theme === 'light' ? '1px solid gray' : 'none';
+        });
+    }
+
+    const toggle = document.getElementById('themeToggle');
+    toggle?.addEventListener('change', applyBorderBasedOnTheme);
+
+    window.onload = applyBorderBasedOnTheme;
+</script>

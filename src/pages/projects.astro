@@ -1,0 +1,11 @@
+---
+import Layout from '@layouts/Layout.astro';
+import CardLister from '@src/components/CardLister.astro';
+
+---
+
+<Layout title="Web de Jorge">
+	<main class="lg:ml-10 lg:mr-10 xl:ml-20 xl:mr-20 2xl:ml-80 2xl:mr-80 pl-8 pr-8">
+		<CardLister type="project" items={['pydepcheck', 'personalweb']}/>
+	</main>
+</Layout>
