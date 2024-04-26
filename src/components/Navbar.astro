@@ -55,7 +55,6 @@ import ToggleTheme from './ToggleTheme.astro';
     const theme = localStorage.getItem('theme');
     let color = theme === 'light' ? "bg-gray-300" : "bg-gray-800";
 
-    // Remove all possible color classes
     navbar.classList.remove("bg-gray-300", "bg-gray-800");
 
     if (window.scrollY > 0) {
