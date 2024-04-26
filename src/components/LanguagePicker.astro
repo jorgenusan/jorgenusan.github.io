@@ -19,7 +19,16 @@ const lang = getLangFromUrl(Astro.url);
 
   selectElement?.addEventListener('change', (event) => {
     const selectedLanguage = (event.target as HTMLSelectElement).value;
+    let currentPath = window.location.pathname;
+
+    if (selectedLanguage !== 'es' && currentPath.startsWith('/es')) {
+      currentPath = currentPath.substring(3);
+    }
+    if (currentPath === '') {
+      currentPath = '/';
+    }
+
     const translatePath = useTranslatedPath(selectedLanguage as "en" | "es");
-    window.location.href = translatePath('/', selectedLanguage);
+    window.location.href = translatePath(currentPath, selectedLanguage);
   });
 </script>

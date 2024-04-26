@@ -2,20 +2,25 @@
 import LanguagePicker from '@src/components/LanguagePicker.astro';
 import ToggleTheme from './ToggleTheme.astro';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const indexURL = getRelativeLocaleUrl(lang, "/");
+const vitarURL = getRelativeLocaleUrl(lang, "vitae");
+const projectsURL = getRelativeLocaleUrl(lang, "projects");
 ---
 
 <div class="navbar mb-20 lg:pl-20 lg:pr-20 2xl:pr-80 2xl:pl-80 fixed z-50 bg-opacity-95">
     <div class="navbar-start flex justify-between">
-      <a href="#" class="btn btn-ghost text-xl">{t('navbar.title')}</a>
+      <a href="" class="btn btn-ghost text-xl">{t('navbar.title')}</a>
     </div>
     <div class="navbar-center hidden md:flex">
       <ul class="menu menu-horizontal px-1">
-        <li><a href="/">{t('navbar.about')}</a></li>
-        <li><a href="vitae">{t('navbar.vitae')}</a></li>
-        <li><a href="projects">{t('navbar.projects')}</a></li>
+        <li><a href={indexURL}>{t('navbar.about')}</a></li>
+        <li><a href={vitarURL}>{t('navbar.vitae')}</a></li>
+        <li><a href={projectsURL}>{t('navbar.projects')}</a></li>
       </ul>
     </div>
     <div class="navbar-end hidden md:flex">
