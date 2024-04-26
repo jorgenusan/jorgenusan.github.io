@@ -3,7 +3,7 @@ import LanguagePicker from '@src/components/LanguagePicker.astro';
 import ToggleTheme from './ToggleTheme.astro';
 ---
 
-<div class="navbar mb-20 lg:pl-20 lg:pr-20 2xl:pr-80 2xl:pl-80 fixed z-50 bg-opacity-90">
+<div class="navbar mb-20 lg:pl-20 lg:pr-20 2xl:pr-80 2xl:pl-80 fixed z-50 bg-opacity-95">
     <div class="navbar-start flex justify-between">
       <a href="#" class="btn btn-ghost text-xl">JNS Website</a>
     </div>
@@ -50,13 +50,26 @@ import ToggleTheme from './ToggleTheme.astro';
     dropdown.classList.toggle('hidden');
   }
 
-  window.addEventListener('scroll', () => {
+  function updateNavbarColor() {
     const navbar = document.querySelector('.navbar');
-    const color = "bg-gray-900";
+    const theme = localStorage.getItem('theme');
+    let color = theme === 'light' ? "bg-gray-300" : "bg-gray-800";
+
+    // Remove all possible color classes
+    navbar.classList.remove("bg-gray-300", "bg-gray-800");
+
     if (window.scrollY > 0) {
       navbar.classList.add(color);
     } else {
       navbar.classList.remove(color);
     }
-  });
+  }
+
+  window.addEventListener('scroll', updateNavbarColor);
+
+ const toggle = document.getElementById('themeToggle');
+ toggle.addEventListener('change', () => {
+  updateNavbarColor();
+ });
+
 </script>
