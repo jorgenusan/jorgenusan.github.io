@@ -12,7 +12,7 @@ const vitarURL = getRelativeLocaleUrl(lang, "vitae");
 const projectsURL = getRelativeLocaleUrl(lang, "projects");
 ---
 
-<div class="navbar mb-20 lg:pl-20 lg:pr-20 2xl:pr-80 2xl:pl-80 fixed z-50 bg-opacity-95">
+<div class="navbar mb-20 fixed z-50 bg-opacity-95 shadow-md pages">
     <div class="navbar-start flex justify-between">
       <a href="" class="btn btn-ghost text-xl">{t('navbar.title')}</a>
     </div>
@@ -61,9 +61,11 @@ const projectsURL = getRelativeLocaleUrl(lang, "projects");
   function updateNavbarColor() {
     const navbar = document.querySelector('.navbar');
     const theme = localStorage.getItem('theme');
-    let color = theme === 'light' ? "bg-gray-200" : "bg-gray-600";
+    const lightNavbarBg = "bg-gray-200";
+    const darkNavbarBg = "bg-custom-purple";
+    let color = theme === 'light' ? lightNavbarBg : darkNavbarBg;
 
-    navbar.classList.remove("bg-gray-200", "bg-gray-600");
+    navbar.classList.remove(lightNavbarBg, darkNavbarBg);
 
     if (window.scrollY > 0) {
       navbar.classList.add(color);
@@ -80,3 +82,12 @@ const projectsURL = getRelativeLocaleUrl(lang, "projects");
  });
 
 </script>
+
+<style>
+  .navbar {
+    transition: background-color 0.3s;
+  }
+  .navbar a {
+    font-size: 1.3rem;
+  }
+</style>
