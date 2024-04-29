@@ -4,11 +4,12 @@
     "home.company": "Antexia Technologies S.L.",
     "home.img": "/me.jpg",
     
+    "navbar.title": "JNS",
     "navbar.about": "Sobre mi",
     "navbar.vitae": "Vitae",
     "navbar.projects": "Proyectos",
-    "navbar.title": "JNS",
     "navbar.options": "Opciones",
+    "navbar.resume": "Currículum",
 
     "experience.title": "Experiencia",
     "experience.antexia.name": "Antexia Technologies S.L.",
@@ -70,5 +71,9 @@
     "project.personalweb.name": "Personal Website",
     "project.personalweb.description": "Mi sitio web y portfolio, construido con React, Tailwind CSS y Next.js.",
     "project.personalweb.web": "https://github.com/jorgenusan/personal-website.git",
-    "project.personalweb.img": "/website.jpg"
+    "project.personalweb.img": "/website.jpg",
+
+    "resume.download": "Descargar CV",
+    "resume.text": "La vista previa del currículum no está disponible en pantallas pequeñas. Por favor, descargue el PDF.",
+    "resume.path": "/jns_cv_es.pdf"
 }
