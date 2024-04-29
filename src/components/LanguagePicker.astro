@@ -15,20 +15,31 @@ const lang = getLangFromUrl(Astro.url);
 <script>
   import { useTranslatedPath } from '../i18n/utils';
 
-  const selectElement = document.getElementById('language-select');
+  const selectElements = document.querySelectorAll('#language-select');
 
-  selectElement?.addEventListener('change', (event) => {
-    const selectedLanguage = (event.target as HTMLSelectElement).value;
-    let currentPath = window.location.pathname;
+  selectElements.forEach((selectElement) => {
+    selectElement.addEventListener('change', (event) => {
+      const selectedLanguage = (event.target as HTMLSelectElement).value;
+      let currentPath = window.location.pathname;
 
-    if (selectedLanguage !== 'es' && currentPath.startsWith('/es')) {
-      currentPath = currentPath.substring(3);
-    }
-    if (currentPath === '') {
-      currentPath = '/';
-    }
+      if (selectedLanguage !== 'es' && currentPath.startsWith('/es')) {
+        currentPath = currentPath.substring(3);
+      }
+      if (currentPath === '') {
+        currentPath = '/';
+      }
 
-    const translatePath = useTranslatedPath(selectedLanguage as "en" | "es");
-    window.location.href = translatePath(currentPath, selectedLanguage);
+      const translatePath = useTranslatedPath(selectedLanguage as "en" | "es");
+      window.location.href = translatePath(currentPath, selectedLanguage);
+    });
   });
 </script>
+
+<style>
+  html.dark #language-select {
+    background-color: #282a36;
+  }
+  html.light #language-select {
+    background-color: white;
+  }
+</style>
