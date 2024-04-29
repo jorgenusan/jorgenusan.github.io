@@ -1,0 +1,77 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="flex justify-center items-center flex-col">
+    <a href={`/${lang}_resume.pdf`} download class="download-btn btn btn-wide mb-8 bg-custom-blue">
+        <?xml version="1.0" encoding="UTF-8"?>
+        <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000">
+            <path d="M6 20L18 20" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M12 4V16M12 16L15.5 12.5M12 16L8.5 12.5" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        {t('resume.download')}
+    </a>
+    <canvas id=pdf-canvas></canvas>
+    <p id="message" class="border-2 border-gray-500 p-4 hidden">{t('resume.text')}</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.1.392/pdf.min.mjs"></script>
+<script>
+    declare var pdfjsLib: any;
+
+    const language = document.documentElement.lang;
+
+    window.onload = function() {
+        const canvas = document.getElementById('pdf-canvas') as HTMLCanvasElement;
+        const message = document.getElementById('message') as HTMLParagraphElement;
+
+        function displayMessage() {
+            canvas.style.display = 'none';
+            message.style.display = 'block';
+
+        }
+
+        function displayPDF() {
+            canvas.style.display = 'block';
+            message.style.display = 'none';
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.1.392/pdf.worker.min.mjs';
+            pdfjsLib.getDocument(`/${language}_resume.pdf`).promise.then(pdf => {
+                pdf.getPage(1).then(page => {
+                    const canvas = document.getElementById('pdf-canvas') as HTMLCanvasElement;
+                    const context = canvas.getContext('2d');
+                    const viewport = page.getViewport({ scale: 1 });
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+                    page.render({ canvasContext: context, viewport: viewport });
+                });
+            });
+        }
+
+        if (window.innerWidth < 765) {
+            displayMessage();
+        } else {
+            displayPDF();
+        }
+
+        window.onresize = function() {
+            if (window.innerWidth < 765) {
+                displayMessage();
+            } else {
+                displayPDF();
+            }
+        };
+    };
+</script>
+
+<style>
+    html.light .download-btn {
+        color: #ffffff;
+    }
+
+    html.dark .download-btn:hover {
+        background-color: #45528c;
+    }
+</style>
