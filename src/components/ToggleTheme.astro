@@ -8,13 +8,13 @@
   <svg class="col-start-2 row-start-1 stroke-base-100 fill-base-100" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
 </label>
 
-<script is:inline>
+<script>
   
-  const htmlElement = document.querySelector("html");
+  const htmlElement = document.documentElement;
   let dataTheme = localStorage.getItem("data-theme");
   if (!dataTheme) {
   localStorage.setItem("data-theme", "dracula");
-  htmlElement.setAttribute("data-theme", "dracula");
+  htmlElement?.setAttribute("data-theme", "dracula");
 }
   const theme = (() => {
     if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
@@ -25,37 +25,40 @@
     }
     return 'light';
   })();
-  
-  const element = document.documentElement;
+
   if (theme === 'light') {
-    element.classList.remove('dark');
-    element.classList.add('light');
+    htmlElement.classList.remove('dark');
+    htmlElement.classList.add('light');
   } else {
-    element.classList.remove('light');
-    element.classList.add('dark');
+    htmlElement.classList.remove('light');
+    htmlElement.classList.add('dark');
   }
   
-  window.localStorage.setItem('theme', theme);
-  htmlElement.setAttribute("data-theme", dataTheme);
+  window.localStorage.setItem('theme', theme || '');
+  htmlElement.setAttribute("data-theme", dataTheme ?? "");
 
   const handleToggleClick = () => {
-    if (element.classList.contains("dark")) {
-      element.classList.remove("dark");
-      element.classList.add("light");
+    if (htmlElement.classList.contains("dark")) {
+      htmlElement.classList.remove("dark");
+      htmlElement.classList.add("light");
       localStorage.setItem("theme", "light");
       localStorage.setItem("data-theme", "light");
     } else {
-      element.classList.remove("light");
-      element.classList.add("dark");
+      htmlElement.classList.remove("light");
+      htmlElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
       localStorage.setItem("data-theme", "dracula");
     }
     const dataTheme = localStorage.getItem("data-theme");
-    htmlElement.setAttribute("data-theme", dataTheme);
+    htmlElement.setAttribute("data-theme", dataTheme ?? "");
+
+    window.dispatchEvent(new Event("storage"));
   }
   
-  const themeToggle = document.getElementById("themeToggle");
-  themeToggle.checked = theme === 'dark';
-  themeToggle.addEventListener("change", handleToggleClick);
+  const themeToggles = document.querySelectorAll("#themeToggle");
+
+  themeToggles.forEach((themeToggle) => {
+    themeToggle.addEventListener("change", handleToggleClick);
+  });
 
 </script>
