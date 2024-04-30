@@ -20,7 +20,7 @@
     "about.title": "Sobre mi",
     "about.img": "/me_about.jpg",
     "about.professional": "Profesionales",
-    "about.skillset": "Habilidades",
+    "about.skillset": "<span class='important-text'>Habilidades</span>&nbspProfesionales",
     "about.languages": "Lenguajes",
     "about.ml": "Machine Learning",
     "about.frameworks": "Frameworks",
