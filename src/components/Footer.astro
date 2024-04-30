@@ -2,21 +2,20 @@
 import SocialMediaLinks from "./SocialMediaLinks.astro";
 
 ---
-<footer class="footer items-center p-4 bg-neutral text-neutral-content mt-20">
+<div class="mb-20"></div>
+
+<footer class="footer items-center p-4 shadow-[0_-6px_8px_-1px_rgba(0,0,0,0.1),0_-3px_6px_-1px_rgba(0,0,0,0.06)]">
     <aside class="items-center grid-flow-col">
       <p>Copyright © 2024 - Jorge Núñez Santiago</p>
     </aside> 
     <nav class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
         <SocialMediaLinks />
     </nav>
-  </footer>
+</footer>
 
 <style>
-    html.dark .footer {
-        @apply bg-custom-purple;
-    }
     html.light .footer {
-        @apply bg-gray-200 text-black font-bold;
+        @apply text-black;
     }
     .footer {
         @apply lg:pl-10 lg:pr-10 xl:pl-20 xl:pr-20 2xl:pl-80 2xl:pr-80;
