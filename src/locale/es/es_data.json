@@ -86,8 +86,8 @@
     "project.pydepcheck.web": "https://github.com/jorgenusan/pydepcheck.git",
     "project.pydepcheck.img": "/pydepcheck.jpg",
     "project.personalweb.name": "Personal Website",
-    "project.personalweb.description": "Mi sitio web y portfolio, construido con React, Tailwind CSS y Next.js.",
-    "project.personalweb.web": "https://github.com/jorgenusan/personal-website.git",
+    "project.personalweb.description": "Mi sitio web y portfolio, construido con Astro y Tailwind CSS.",
+    "project.personalweb.web": "https://github.com/jorgenusan/jorgenusan.github.io",
     "project.personalweb.img": "/website.jpg",
 
     "resume.download": "Descargar CV",
