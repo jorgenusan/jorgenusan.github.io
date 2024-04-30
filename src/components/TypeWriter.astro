@@ -1,0 +1,89 @@
+<span id="typeWriter"><span id="text"></span><span id="cursor"></span></span>
+
+<script>
+    import enData from '@locale/en/en_data.json'
+    import esData from '@locale/es/es_data.json'
+
+    let i = 0;
+    let j = 0;
+    const texts = window.location.pathname.startsWith('/es') ? esData['home.typewriter'] : enData['home.typewriter'];
+    const writeSpeed = 100; 
+    const ereaseSpeed = 50;
+    const writePause = 2000;
+    const ereasePause = 500;
+
+    const elementWriter = document.getElementById('text');
+
+    function writeLetter() {
+        if (elementWriter) {
+            elementWriter.innerHTML += texts[j].charAt(i);
+        }
+        i++;
+    }
+
+    function eraseLetter() {
+        if (elementWriter) {
+            elementWriter.innerHTML = texts[j].substring(0, i-1);
+        }
+        i--;
+    }
+
+    function typeWriter() {
+        if (i < texts[j].length) {
+            writeLetter();
+            setTimeout(typeWriter, writeSpeed);
+        } else {
+            setTimeout(typeEraser, writePause);
+        }
+    }
+
+    function typeEraser() {
+        if (i > 0) {
+            eraseLetter();
+            setTimeout(typeEraser, ereaseSpeed);
+        } else {
+            setTimeout(startNewSentence, ereasePause);
+        }
+    }
+
+    function startNewSentence() {
+        if (j < texts.length - 1) {
+            j++;
+        } else {
+            j = 0;
+        }
+        typeWriter();
+    }
+
+    typeWriter();
+</script>
+
+<style>
+    #typeWriter {
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    #text {
+        display: inline-block;
+    }
+
+    #cursor {
+        display: inline-block;
+        width: .1em;
+        height: 1em;
+        background-color: white;
+        animation: blink 1s infinite;
+        margin-left: .2em;
+    }
+
+    html.light #cursor {
+        background-color: black;
+    }	
+
+    @keyframes blink {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+</style>
