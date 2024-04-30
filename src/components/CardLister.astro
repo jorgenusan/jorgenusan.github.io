@@ -6,12 +6,12 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div class="flex flex-col w-full">
-    <h1 class="text-2xl font-bold mb-4 text-left titles">{t(`${Astro.props.type}.title`)}</h1>
+<div class="flex flex-col">
+    <h1 class="titles">{t(`${Astro.props.type}.title`)}</h1>
     <br />
-    <div class="flex flex-wrap justify-center">
+    <div class="flex flex-wrap justify-center gap-10">
         {Astro.props.items.map((item, index) => (
-            <a id={t(`${Astro.props.type}.${item}.name`)} class="card w-80 lg:ml-10 md:ml-5 shadow-custom-blue shadow-md flex mb-4 bg-custom-black" href={t(`${Astro.props.type}.${item}.link`)} target="_blank" rel="noopener noreferrer">
+            <div id={t(`${Astro.props.type}.${item}.name`)} class="card w-80 shadow-custom-blue shadow-md flex mb-4 bg-custom-black transition-transform transform hover:scale-110 duration-300 ease-in-out">
                 <figure>
                     <img
                         src={t(`${Astro.props.type}.${item}.img`)}
@@ -21,15 +21,21 @@ const t = useTranslations(lang);
                 <div class="card-body">
                     <h2 class="card-title text-custom-blue">{t(`${Astro.props.type}.${item}.name`)}</h2>
                     <p>{t(`${Astro.props.type}.${item}.description`)}</p>
+                    <a class="btn w-20 rounded-lg bg-custom-blue" href={t(`${Astro.props.type}.${item}.web`)} target="_blank">GitHub</a>
                 </div>
-            </a>
+            </div>
         ))}
     </div>
 </div>
 
 <style>
-    html.light p{
-        color: white;
+    html.light .card{
+        background-color: #e7e8ec;
     }
-
+    .btn:hover {
+        background-color: #45528c;
+    }
+    html.light .btn {
+        color:white;
+    }
 </style>
