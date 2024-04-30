@@ -2,14 +2,31 @@
     "home.name": "Jorge Núñez Santiago",
     "home.title": "Ingeniero en Machine Learning",
     "home.company": "Antexia Technologies S.L.",
-    "home.img": "/me.jpg",
+    "home.img": "/me_home.jpg",
+
+    "home.typewriter": [
+        "Ingeniero en Machine Learning",
+        "Investigador en Visión por Ordenador",
+        "Desarrollador de Software"],
     
     "navbar.title": "JNS",
+    "navbar.home": "Inicio",
     "navbar.about": "Sobre mi",
     "navbar.vitae": "Vitae",
     "navbar.projects": "Proyectos",
     "navbar.options": "Opciones",
     "navbar.resume": "Currículum",
+
+    "about.title": "Sobre mi",
+    "about.img": "/me_about.jpg",
+    "about.professional": "Profesionales",
+    "about.skillset": "Habilidades",
+    "about.languages": "Lenguajes",
+    "about.ml": "Machine Learning",
+    "about.frameworks": "Frameworks",
+    "about.databases": "Bases de Datos",
+    "about.backend": "Backend",
+    "about.frontend": "Frontend",
 
     "experience.title": "Experiencia",
     "experience.antexia.name": "Antexia Technologies S.L.",
