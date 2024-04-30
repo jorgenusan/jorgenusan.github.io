@@ -6,7 +6,7 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   site: "https://jorgenusan.github.io",
-  base: "personal-website",
+  base: "",
   integrations: [tailwind(), mdx()],
   i18n: {
     locales: ['en', 'es'],
