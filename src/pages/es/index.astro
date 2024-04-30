@@ -1,13 +1,10 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import Home from '@components/Home.astro';
-import About from '@src/components/About.astro';
 ---
 
 <Layout title="Web de Jorge">
-	<main class="pages">
+	<main class="flex flex-grow justify-center items-center">
 		<Home />
-		<div class="h-20"/>
-		<About type="education" items={['teis', 'leliadoura', 'uva']}/>
 	</main>
 </Layout>
