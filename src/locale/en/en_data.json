@@ -91,6 +91,5 @@
     "project.personalweb.img": "/website.jpg",
 
     "resume.download": "Download CV",
-    "resume.text": "The resume preview is not available on small screens. Please download the PDF.",
-    "resume.path": "/jns_cv_en.pdf"
+    "resume.text": "The resume preview is not available on small screens. Please download the PDF."
 }
