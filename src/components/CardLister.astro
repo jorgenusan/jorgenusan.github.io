@@ -20,19 +20,32 @@ const t = useTranslations(lang);
                 </figure>
                 <div class="card-body">
                     <h2 class="card-title text-custom-blue">{t(`${Astro.props.type}.${item}.name`)}</h2>
-                    <p class="text-white">{t(`${Astro.props.type}.${item}.description`)}</p>
-                    <a class="btn w-20 rounded-lg bg-custom-blue" href={t(`${Astro.props.type}.${item}.web`)} target="_blank">GitHub</a>
+                    <p>{t(`${Astro.props.type}.${item}.description`)}</p>
+                    <a class="btn w-20 rounded-lg bg-custom-blue text-white" href={t(`${Astro.props.type}.${item}.web`)} target="_blank">GitHub</a>
                 </div>
             </div>
         ))}
     </div>
 </div>
 
-<style>
-    html.light .card{
-        background-color: #e7e8ec;
-    }
+<style global>
     .btn:hover {
         background-color: #45528c;
     }
 </style>
+
+<script>
+    function applyTheme() {
+        const theme = localStorage.getItem('theme');
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            card.style.backgroundColor = theme === 'light' ? '#e7e8ec' : '';
+        });
+    }
+
+    const toggle = document.getElementById('themeToggle');
+    toggle?.addEventListener('change', applyTheme);
+
+    window.onload = applyTheme;
+</script>
