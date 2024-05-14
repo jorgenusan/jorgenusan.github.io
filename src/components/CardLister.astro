@@ -28,19 +28,13 @@ const t = useTranslations(lang);
     </div>
 </div>
 
-<style global>
-    .btn:hover {
-        background-color: #45528c;
-    }
-</style>
-
 <script>
     function applyTheme() {
         const theme = localStorage.getItem('theme');
         const cards = document.querySelectorAll('.card');
 
         cards.forEach(card => {
-            card.style.backgroundColor = theme === 'light' ? '#e7e8ec' : '';
+            (card as HTMLElement).style.backgroundColor = theme === 'light' ? '#e7e8ec' : '';
         });
     }
 
@@ -49,3 +43,9 @@ const t = useTranslations(lang);
 
     window.onload = applyTheme;
 </script>
+
+<style>
+    .btn:hover {
+        background-color: #45528c;
+    }
+</style>
