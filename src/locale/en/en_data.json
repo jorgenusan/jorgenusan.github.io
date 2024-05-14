@@ -1,11 +1,11 @@
 {
     "home.name": "Jorge Núñez Santiago",
-    "home.title": "Machine Learning Engineer",
+    "home.title": "Machine Learning Developer",
     "home.company": "Antexia Technologies S.L.",
     "home.img": "/me_home.jpg",
 
     "home.typewriter": [
-        "Machine Learning Engineer",
+        "Machine Learning Developer",
         "Computer Vision Researcher",
         "Software Developer"
     ],
@@ -32,7 +32,7 @@
     "experience.antexia.name": "Antexia Technologies S.L.",
     "experience.antexia.startDate": "October 2023",
     "experience.antexia.endDate": "Present",
-    "experience.antexia.title": "Machine Learning Engineer",
+    "experience.antexia.title": "Machine Learning Developer",
     "experience.antexia.description": "Researcher in the field of computer vision, focusing on the development of imaging algorithms and the generation and deployment of pipelines for processing video streams.",
     "experience.antexia.web": "https://www.indracompany.com/",
     "experience.antexia.img": "/indra.png",
