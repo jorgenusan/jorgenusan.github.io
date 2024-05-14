@@ -34,7 +34,7 @@ const resumeURL = getRelativeLocaleUrl(lang, "resume");
         </div>
         <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52" onclick="closeDropdown()">
           <li class="w-fit"><ToggleTheme /></li>
-          <li><LanguagePicker /></li>
+          <LanguagePicker />
         </ul>
       </div>
     </div>
@@ -51,7 +51,7 @@ const resumeURL = getRelativeLocaleUrl(lang, "resume");
           <li><a href={resumeURL}>{t('navbar.resume')}</a></li>
           <li></li>
           <li class="w-fit"><ToggleTheme /></li>
-          <li class="w-fit"><LanguagePicker /></li>
+          <LanguagePicker />
         </ul>
       </div>
     </div>
