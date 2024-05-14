@@ -20,7 +20,7 @@ const t = useTranslations(lang);
                 </figure>
                 <div class="card-body">
                     <h2 class="card-title text-custom-blue">{t(`${Astro.props.type}.${item}.name`)}</h2>
-                    <p>{t(`${Astro.props.type}.${item}.description`)}</p>
+                    <p class="text-white">{t(`${Astro.props.type}.${item}.description`)}</p>
                     <a class="btn w-20 rounded-lg bg-custom-blue" href={t(`${Astro.props.type}.${item}.web`)} target="_blank">GitHub</a>
                 </div>
             </div>
@@ -34,8 +34,5 @@ const t = useTranslations(lang);
     }
     .btn:hover {
         background-color: #45528c;
-    }
-    html.light .btn {
-        color:white;
     }
 </style>
