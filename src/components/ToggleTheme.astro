@@ -6,25 +6,30 @@
 
 <script>
   const htmlElement = document.documentElement;
-  const themeToggles = document.querySelectorAll('.toggle.theme-controller');
+  const themeToggles = document.querySelectorAll('.toggle.theme-controller') as NodeListOf<HTMLInputElement>;
 
-  const handleTheme = (theme, toggle) => {
+  const handleTheme = (theme) => {
     const isDark = theme === 'dark';
     htmlElement.setAttribute('data-theme', isDark ? 'dracula' : 'light');
     localStorage.setItem('theme', theme);
-    (toggle as HTMLInputElement).checked = isDark;
+    themeToggles.forEach(toggle => {
+      const isToggleDark = toggle.checked;
+      if (isToggleDark !== isDark) {
+        toggle.checked = isDark;
+      }
+    });
   };
 
   const storedTheme = localStorage.getItem('theme');
   const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   const theme = storedTheme || systemTheme;
 
-  themeToggles.forEach(toggle => handleTheme(theme, toggle));
+  handleTheme(theme);
 
   themeToggles.forEach(toggle => {
     toggle.addEventListener('change', () => {
-      const newTheme = (toggle as HTMLInputElement).checked ? 'dark' : 'light';
-      handleTheme(newTheme, toggle);
+      const newTheme = toggle.checked ? 'dark' : 'light';
+      handleTheme(newTheme);
       window.dispatchEvent(new Event('storage'));
     });
   });
