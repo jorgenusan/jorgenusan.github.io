@@ -4,6 +4,10 @@ This website is used as a portfolio to present myself, show my projects and my p
 
 Have a look to the website here! [JNS Website](https://jorgenusan.github.io/)
 
+## Demo
+
+![personal website](/public/personal_website.png)
+
 ## About the project
 
 It is an [Astro](https://astro.build/) project and use [Tailwindcss](https://tailwindcss.com/) for the styles.
