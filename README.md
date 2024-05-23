@@ -12,7 +12,7 @@ Have a look to the website here! [JNS Website](https://jorgenusan.github.io/)
 
 It is an [Astro](https://astro.build/) project and use [Tailwindcss](https://tailwindcss.com/) for the styles.
 
-## 🧞 Commands
+## Commands
 
 All commands are run from the root of the project, from a terminal:
 
